@@ -1,0 +1,102 @@
+fieldset.searchInline {
+    display: inline;
+}
+
+/* Google Maps*/
+#map {
+    height: 640px;
+}
+
+/* Add some initial styling for the search icon */
+.SearchIcon {
+    position: fixed;
+    top: 120px;
+    left: 20px;
+    cursor: pointer;
+    background-color: #888;
+    color: #fff;
+    padding: 10px;
+    z-index: 999;
+    transition: background-color 0.4s;
+}
+
+.SearchIcon:hover {
+    background-color: #000;
+}
+
+/* Hide the SearchMenu initially */
+#searchMenu {
+    display: none;
+    position: absolute;
+    top: 1%;
+    left: 4%;
+    z-index: 998;
+}
+
+/* Center the content within the SearchMenu */
+#searchMenu .SearchMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+/* Define styles for the custom marker */
+.custom-marker {
+    background-color: #007bff;
+    border: 2px solid #0056b3;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Define styles for the marker title */
+.marker-title {
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    padding: 2px;
+    background-color: #222;
+}
+
+/* Define styles for the marker description */
+.marker-description {
+    font-size: 12px;
+    background-color: white;
+    padding: 2px;
+    border: 1px solid #0056b3;
+}
+
+/* Define styles for the marker reference link */
+.marker-reference a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+iframe {
+    height: 500px; /* Adjust the height as needed */
+    border: 1px solid #ccc;
+    width: 100%;
+}
+button {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Define a container for rows */
+.container-other {
+    display: flex; /* Use flexbox to create columns */
+    flex-wrap: wrap; /* Allow columns to wrap onto new rows */
+}
+
+/* Define individual columns */
+.column-other {
+    flex: 1; /* Distribute available space equally among columns */
+    border: 1px solid #ccc;
+    margin: 5px;
+    text-align: center;
+}

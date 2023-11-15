@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="HTMLDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=INSERT_YOUR_API_KEY&libraries=geometry,drawing,places"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <title>SearchUI</title>
+</head>
+<body>
+
+<!--SEARCH MENU TOGGLE-->
+    <div class="SearchMenuToggle">
+        <div class="SearchIcon" id="searchIcon">
+            <i class="fa fa-search"></i>
+        </div>
+        <div class="SearchMenu" id="searchMenu">
+            <form action="/SearchUI.py">
+                <fieldset class="searchInline" style="background-color: rgba(255,255,255,0.8);">
+                    <legend>Search By</legend>
+                    <input type="checkbox" id="UNSearchParam" name="UNSearchParam" value="UsernameSearch">
+                    <label for="UNSearchParam">Username Search</label>
+                    <input type="checkbox" id="NAMSearchParam" name="NAMSearchParam" value="NameSearch">
+                    <label for="NAMSearchParam">Name Search</label>
+                    <input type="checkbox" id="KEYSearchParam" name="KEYSearchParam" value="KeywordSearch">
+                    <label for="KeywordSearch">Keyword Search</label>
+                    <input type="checkbox" id="MAILSearchParam" name="MAILSearchParam" value="EMailSearch">
+                    <label for="KeywordSearch">EMail Search</label>
+                    <input type="checkbox" id="PHNSearchParam" name="PHNSearchParam" value="PhoneSearch">
+                    <label for="KeywordSearch">Phone Search</label>
+                </fieldset>
+                <br>
+                <fieldset class="searchInline"  style="background-color: rgba(255,255,255,0.8);">
+                    <legend>From Class</legend>
+                    <input type="checkbox" id="SMSearchClass" name="SMSearchClass" value="SocialMediaClass">
+                    <label for="SMSearchClass">Social Media</label>
+                    <input type="checkbox" id="SESearchClass" name="SESearchClass" value="SearchEngineClass">
+                    <label for="SESearchClass">Search Engine</label>
+                    <input type="checkbox" id="ARCHSearchClass" name="ARCHSearchClass" value="ArchiveClass">
+                    <label for="ARCHSearchClass">Archives</label>
+                    <input type="checkbox" id="DDWSearchClass" name="DDWSearchClass" value="DeepDarkWebClass">
+                    <label for="DDWSearchClass">Deep/Dark Web</label>
+                    <input type="checkbox" id="BFSearchClass" name="BFSearchClass" value="BlogForumClass">
+                    <label for="BlogForumClass">Blogs & Forums</label>
+                    <input type="checkbox" id="NEWSearchClass" name="NEWSearchClass" value="NewsClass">
+                    <label for="BlogForumClass">Newspapers & Sites</label>
+                    <div class="specialSearchClass-Div">
+                        <input type="checkbox" id="SPLSearchClass" name="SPLSearchClass" value="SpecialSearchClass">
+                        <label for="SPLSearchClass">Special Websites</label>
+                        <a href="SpecialSitesDocumentation.html" target="_blank" style="text-decoration:none; color:#888;"><i class="fa fa-info-circle"></i></a>
+                    </div>
+                    <hr>
+                    <fieldset>
+                        <legend>For People</legend>
+                        <div class="peopleSearchClass-Div">
+                            <input type="checkbox" name="PPLSearchClass" id="PPLSearchClass" value="PeopleClass">
+                            <label for="PeopleClass">People Search</label>
+                        </div>
+                    </fieldset>
+                </fieldset>
+                <br>
+                <fieldset class="searchInline" style="background-color: rgba(255,255,255,0.8);">
+                    <legend>Global Search</legend>
+                    <label for="GlobalSearch">Search Query: </label>
+                    <input type="text" id="GlobalSearch" name="GlobalSearch"> <br>
+                    <br>
+                    <input type="submit" value="Start Search">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript to toggle the SearchMenu
+        const searchIcon = document.getElementById('searchIcon');
+        const searchMenu = document.getElementById('searchMenu');
+
+        searchIcon.addEventListener('click', function () {
+            if (searchMenu.style.display === 'none' || searchMenu.style.display === '') {
+                searchMenu.style.display = 'block';
+            } else {
+                searchMenu.style.display = 'none';
+            }
+        });
+    </script>
+<!--SEARCH MENU TOGGLE ENDS-->
+
+    <div class="container-other"> 
+        <div class="column-other">
+            <!--MAPS WIDGET-->
+            <div id="map">
+            </div>
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            <script src="HTMLDashboard.js"></script>
+            <!--MAPS WIDGET CLOSE-->
+        </div>
+        <div class="column-other">
+            <!--IFRAME NEWS HEADLINES BOX ON TOP-->
+            <iframe id="websiteFrame" src="" frameborder="0"></iframe>
+            <div>
+                <button id="prevButton" onclick="navigate(-1)">Previous</button>
+                <button id="nextButton" onclick="navigate(1)">Next</button>
+            </div>
+            <!--IFRAME NEWS HEADLINES BOX ENDS HERE-->
+            <script>
+                const websites = [
+                    "https://ndtv.com",
+                    "https://timesofindia.com",
+                    "https://www.scmp.com",
+                    // Add more website URLs as needed
+                ];
+
+                let currentIndex = 0;
+                const iframe = document.getElementById("websiteFrame");
+                const prevButton = document.getElementById("prevButton");
+                const nextButton = document.getElementById("nextButton");
+
+                function navigate(direction) {
+                    currentIndex += direction;
+
+                    if (currentIndex < 0) {
+                        currentIndex = websites.length - 1;
+                    } else if (currentIndex >= websites.length) {
+                        currentIndex = 0;
+                    }
+
+                    iframe.src = websites[currentIndex];
+                }
+
+                // Initialize the iframe with the first website
+                iframe.src = websites[currentIndex];
+            </script>
+        </div>
+    </div>
+
+    <div class="container-other">
+        <div class="column-other">
+            <h1>RSS Feed Reader</h1>
+        </div>
+    </div>
+    <!--TEST ENVIRONMENT: STATUS 200-->
+    <!--
+    <div class="GoogleMaps" id="GoogleMaps">
+    </div>
+    <div class="Testing">
+        <iframe src="https://ndtv.com" sandbox="allow-same-origin allow-scripts"></iframe>
+        <div id="external-content"></div>
+
+        <script>
+            fetch('https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2019-1010218')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('external-content').innerHTML = data;
+                });
+        </script>
+    </div>
+    -->
+    <!--TEST ENVIRONMENT ENDS-->
+
+</body>
+</html>
